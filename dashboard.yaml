@@ -1,0 +1,987 @@
+# PUBLIC TEMPLATE: Replace every replace_me_* entity ID with your own Home Assistant entity ID.
+# Replace YOUR_HA_USERNAME with the Home Assistant user name used by kiosk-mode, or remove kiosk_mode.
+# See docs/ENTITY-MAPPING.md before using this dashboard.
+kiosk_mode:
+  hide_header: false
+  hide_sidebar: false
+  user_settings:
+    - users:
+        - YOUR_HA_USERNAME
+      hide_header: false
+      hide_sidebar: false
+views:
+  - type: sections
+    sections:
+      - type: grid
+        cards:
+          - clock_style: digital
+            clock_size: large
+            show_seconds: true
+            no_background: true
+            type: clock
+            grid_options:
+              columns: 9
+              rows: 3
+            time_zone: Asia/Kolkata
+            face_style: markers
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: sensor.replace_me_03
+                icon_color: green
+                content_info: state
+            grid_options:
+              columns: 3
+              rows: auto
+          - type: custom:mushroom-chips-card
+            chips:
+              - type: entity
+                entity: sensor.replace_me_02
+                icon_color: cyan
+            grid_options:
+              columns: 3
+              rows: auto
+              font-size: 15px;
+        column_span: 2
+        theme: Frosted Glass Dark Lite
+      - type: grid
+        cards:
+          - type: conditional
+            conditions:
+              - condition: state
+                entity: input_boolean.replace_me_06
+                state: 'on'
+              - condition: state
+                entity: switch.replace_me_07
+                state: 'off'
+            card:
+              type: custom:button-card
+              entity: input_boolean.replace_me_07
+              name: SPEAKER POWER IS OFF
+              icon: mdi:speaker-off
+              show_name: true
+              show_state: false
+              show_icon: true
+              color_type: card
+              aspect_ratio: 4/1
+              layout: icon_name
+              tap_action:
+                action: toggle
+              styles:
+                card:
+                  - background: rgba(220, 50, 50, 0.22)
+                  - border: 1px solid rgba(255, 100, 100, 0.65)
+                  - border-radius: 16px
+                  - animation: blink 3s ease-in-out infinite
+                name:
+                  - color: '#ff7777'
+                  - font-weight: 600
+                icon:
+                  - color: '#ff7777'
+          - type: vertical-stack
+            cards:
+              - type: conditional
+                grid_options:
+                  columns: 12
+                  rows: 3
+                conditions:
+                  - condition: state
+                    entity: input_boolean.replace_me_06
+                    state: 'on'
+                card:
+                  type: custom:sonos-card
+                  heightPercentage: 60
+                  footerHeight: 3.5
+                  minWidth: 10
+                  player:
+                    artworkAsBackground: true
+                    hideArtwork: true
+                    artworkMinHeight: 1
+                    hideArtistAlbum: true
+                    hideHeader: false
+                    hideEntityName: true
+                    hideControlShuffleButton: true
+                    hideControlRepeatButton: true
+                    hideControlPowerButton: true
+                    controlsLargeIcons: false
+                    hideVolume: false
+                    artworkAsBackgroundBlur: 1
+                    hideControls: false
+                    hideControlFavoriteButton: true
+                    hideControlNextTrackButton: false
+                  volumes:
+                    hideActivePlayerName: true
+                  grouping:
+                    compact: true
+                    hideVolumes: true
+                  groups:
+                    compact: true
+                  mediaBrowser:
+                    hideHeader: true
+                    onlyFavorites: true
+                    hideActivePlayerName: true
+                    favorites:
+                      exclude: []
+                      topItems: []
+                      hideTitleForThumbnailIcons: true
+                  search:
+                    defaultViewMode: list
+                  entityId: media_player.replace_me_01
+                  entityPlatform: music_assistant
+        column_span: 1
+      - type: grid
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: picture-elements
+                image: /local/assets/COP-light-off.png
+                aspect_ratio: '3:1'
+                elements:
+                  - type: image
+                    entity: switch.replace_me_09
+                    image: /local/assets/COP-light-off.png
+                    state_image:
+                      'on': /local/assets/COP-light-on.png
+                      'off': /local/assets/COP-light-off.png
+                    style:
+                      top: 50%
+                      left: 50%
+                      width: 100%
+                      transform: translate(-50%, -50%)
+                    tap_action:
+                      action: toggle
+              - type: markdown
+                content: '**Ceiling Lights**'
+                card_mod:
+                  style: |
+                    ha-card {
+                      background: none;
+                      box-shadow: none;
+                      border: none;
+                      padding: 0;
+                      text-align: center;
+                      font-size: 15px;
+                    }
+          - type: vertical-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: vertical-stack
+                    cards:
+                      - type: picture-elements
+                        image: /local/assets/ceiling-light-off.png
+                        aspect_ratio: '1:1'
+                        elements:
+                          - type: image
+                            entity: switch.replace_me_03
+                            image: /local/assets/ceiling-light-off.png
+                            state_image:
+                              'on': /local/assets/ceiling-light-on.png
+                              'off': /local/assets/ceiling-light-off.png
+                            style:
+                              top: 50%
+                              left: 50%
+                              width: 100%
+                              transform: translate(-50%, -50%)
+                            tap_action:
+                              action: toggle
+                      - type: markdown
+                        content: '**Ceiling Lights**'
+                        card_mod:
+                          style: |
+                            ha-card {
+                              background: none;
+                              box-shadow: none;
+                              border: none;
+                              padding: 0;
+                              text-align: center;
+                              font-size: 15px;
+                            }
+                  - type: vertical-stack
+                    cards:
+                      - type: picture-elements
+                        image: /local/assets/Chandelier_off.png
+                        aspect_ratio: '1:1'
+                        elements:
+                          - type: image
+                            entity: input_boolean.replace_me_02
+                            image: /local/assets/Chandelier_off.png
+                            state_image:
+                              'on': /local/assets/Chandelier_on.png
+                              'off': /local/assets/Chandelier_off.png
+                            style:
+                              top: 50%
+                              left: 50%
+                              width: 100%
+                              transform: translate(-50%, -50%)
+                            tap_action:
+                              action: call-service
+                              service: button.press
+                              target:
+                                entity_id: button.replace_me_03
+                          - type: icon
+                            icon: mdi:tune-variant
+                            style:
+                              top: 85%
+                              left: 50%
+                              color: white
+                              background: rgba(0, 0, 0, 0.8)
+                              border-radius: 50%
+                              padding: 12px
+                              transform: translate(-50%, -50%)
+                            tap_action:
+                              action: navigate
+                              navigation_path: '#chandelier-controls'
+                      - type: markdown
+                        content: '**Chandelier**'
+                        font-size: 12px;
+                        card_mod:
+                          style: |
+                            ha-card {
+                              background: none;
+                              box-shadow: none;
+                              border: none;
+                              padding: 0;
+                              text-align: center;
+                              font-size: 15px;
+                            }
+                  - type: vertical-stack
+                    cards:
+                      - type: picture-elements
+                        image: /local/assets/wall-light-off.png
+                        aspect_ratio: '1:1'
+                        elements:
+                          - type: image
+                            entity: switch.replace_me_08
+                            image: /local/assets/wall-light-off.png
+                            state_image:
+                              'on': /local/assets/wall-light-on.png
+                              'off': /local/assets/wall-light-off.png
+                            style:
+                              top: 50%
+                              left: 50%
+                              width: 100%
+                              transform: translate(-50%, -50%)
+                            tap_action:
+                              action: toggle
+                      - type: markdown
+                        content: '**Wall Lights**'
+                        card_mod:
+                          style: |
+                            ha-card {
+                              background: none;
+                              box-shadow: none;
+                              border: none;
+                              padding: 0;
+                              text-align: center;
+                              font-size: 15px;
+                            }
+              - type: custom:bubble-card
+                card_type: pop-up
+                hash: '#chandelier-controls'
+                name: Chandelier Controls
+                icon: mdi:chandelier
+                close_by_clicking_outside: true
+                cards:
+                  - type: button
+                    name: Change Colour
+                    icon: mdi:palette
+                    show_state: false
+                    tap_action:
+                      action: call-service
+                      service: button.press
+                      target:
+                        entity_id: button.replace_me_04
+                  - type: horizontal-stack
+                    cards:
+                      - type: button
+                        name: Dim
+                        icon: mdi:brightness-5
+                        show_state: false
+                        tap_action:
+                          action: call-service
+                          service: button.press
+                          target:
+                            entity_id: button.replace_me_02
+                      - type: button
+                        name: Brighter
+                        icon: mdi:brightness-7
+                        show_state: false
+                        tap_action:
+                          action: call-service
+                          service: button.press
+                          target:
+                            entity_id: button.replace_me_01
+        column_span: 1
+        theme: Frosted Glass Dark Lite
+      - type: grid
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: picture-elements
+                image: /local/assets/AC-off.png
+                aspect_ratio: '3:1'
+                elements:
+                  - type: image
+                    entity: climate.replace_me_01
+                    image: /local/assets/AC-off.png
+                    state_image:
+                      cool: /local/assets/AC-on.png
+                      'off': /local/assets/AC-off.png
+                    style:
+                      top: 50%
+                      left: 50%
+                      width: 100%
+                      transform: translate(-50%, -50%)
+                    tap_action:
+                      action: call-service
+                      service: script.replace_me_01
+                  - type: conditional
+                    conditions:
+                      - entity: climate.replace_me_01
+                        state: cool
+                    elements:
+                      - type: state-label
+                        entity: climate.replace_me_01
+                        attribute: temperature
+                        prefix: '❄ '
+                        suffix: °
+                        style:
+                          top: 25%
+                          left: 95%
+                          transform: translate(-80%, -50%)
+                          color: '#eafaff'
+                          font-size: 17px
+                          font-weight: 600
+                          letter-spacing: 0.5px
+                          padding: 7px 7px
+                          border-radius: 20px
+                          background: rgba(32, 43, 52, 0.85)
+                          box-shadow: >
+                            5px 5px 10px #000000aa, -2px -2px 5px #ffffff22,
+                            inset 0 1px 1px #ffffff30
+                        tap_action:
+                          action: fire-dom-event
+                          browser_mod:
+                            service: browser_mod.popup
+                            data:
+                              title: AC Temperature
+                              content:
+                                type: thermostat
+                                entity: climate.replace_me_01
+              - type: markdown
+                content: '**Air Conditioning**'
+                card_mod:
+                  style: |
+                    ha-card {
+                      background: none;
+                      box-shadow: none;
+                      border: none;
+                      padding: 0;
+                      text-align: center;
+                      font-size: 15px;
+                    }
+          - type: horizontal-stack
+            cards:
+              - type: vertical-stack
+                cards:
+                  - type: picture-elements
+                    image: /local/assets/speaker-off.png
+                    aspect_ratio: '1:1'
+                    elements:
+                      - type: image
+                        entity: switch.replace_me_07
+                        image: /local/assets/speaker-off.png
+                        state_image:
+                          'on': /local/assets/speaker-on.png
+                          'off': /local/assets/speaker-off.png
+                        style:
+                          top: 50%
+                          left: 50%
+                          width: 100%
+                          transform: translate(-50%, -50%)
+                        tap_action:
+                          action: toggle
+                  - type: markdown
+                    content: '**Speaker**'
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background: none;
+                          box-shadow: none;
+                          border: none;
+                          padding: 0;
+                          text-align: center;
+                          font-size: 15px;
+                        }
+              - type: vertical-stack
+                cards:
+                  - type: picture-elements
+                    image: /local/assets/nuuk_fan_off.png
+                    aspect_ratio: '1:1'
+                    elements:
+                      - type: conditional
+                        conditions:
+                          - entity: input_boolean.replace_me_04
+                            state: 'off'
+                        elements:
+                          - type: image
+                            image: /local/assets/nuuk_fan_off.png
+                            style:
+                              top: 50%
+                              left: 50%
+                              width: 100%
+                              transform: translate(-50%, -50%)
+                            tap_action:
+                              action: call-service
+                              service: button.press
+                              target:
+                                entity_id: button.replace_me_06
+                      - type: conditional
+                        conditions:
+                          - entity: input_boolean.replace_me_04
+                            state: 'on'
+                        elements:
+                          - type: image
+                            image: /local/assets/nuuk_fan_on_airflow.png
+                            style:
+                              top: 50%
+                              left: 50%
+                              width: 100%
+                              transform: translate(-50%, -50%)
+                            tap_action:
+                              action: call-service
+                              service: button.press
+                              target:
+                                entity_id: button.replace_me_06
+                      - type: conditional
+                        conditions:
+                          - entity: input_boolean.replace_me_05
+                            state: 'on'
+                        elements:
+                          - type: image
+                            image: /local/assets/nuuk_lamp_on.png
+                            style:
+                              top: 50%
+                              left: 50%
+                              width: 100%
+                              transform: translate(-50%, -50%)
+                            tap_action:
+                              action: none
+                      - type: icon
+                        icon: mdi:power
+                        style:
+                          top: 12%
+                          right: 12%
+                          color: white
+                          background: rgba(0,0,0,0.75)
+                          border-radius: 50%
+                          padding: 9px
+                          transform: translate(50%, -50%)
+                        tap_action:
+                          action: call-service
+                          service: script.replace_me_02
+                      - type: icon
+                        icon: mdi:lightbulb
+                        style:
+                          top: 28%
+                          right: 12%
+                          color: white
+                          background: rgba(0,0,0,0.75)
+                          border-radius: 50%
+                          padding: 9px
+                          transform: translate(50%, -50%)
+                        tap_action:
+                          action: call-service
+                          service: script.replace_me_03
+                      - type: icon
+                        icon: mdi:autorenew
+                        style:
+                          top: 44%
+                          right: 12%
+                          color: white
+                          background: rgba(0,0,0,0.75)
+                          border-radius: 50%
+                          padding: 9px
+                          transform: translate(50%, -50%)
+                        tap_action:
+                          action: call-service
+                          service: button.press
+                          target:
+                            entity_id: button.replace_me_05
+                      - type: icon
+                        icon: mdi:fan-speed-2
+                        style:
+                          top: 60%
+                          right: 12%
+                          color: white
+                          background: rgba(0,0,0,0.75)
+                          border-radius: 50%
+                          padding: 9px
+                          transform: translate(50%, -50%)
+                        tap_action:
+                          action: call-service
+                          service: button.press
+                          target:
+                            entity_id: button.replace_me_07
+                      - type: icon
+                        icon: mdi:arrow-left-right
+                        style:
+                          top: 76%
+                          right: 12%
+                          color: white
+                          background: rgba(0,0,0,0.75)
+                          border-radius: 50%
+                          padding: 9px
+                          transform: translate(50%, -50%)
+                        tap_action:
+                          action: call-service
+                          service: button.press
+                          target:
+                            entity_id: button.replace_me_08
+                  - type: markdown
+                    content: '**Fan**'
+                    card_mod:
+                      style: |
+                        ha-card {
+                          background: none;
+                          box-shadow: none;
+                          border: none;
+                          padding: 0;
+                          text-align: center;
+                          font-size: 15px;
+                        }
+        column_span: 1
+      - type: grid
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: custom:button-card
+                name: Aquarium
+                show_icon: false
+                show_state: false
+                variables:
+                  title_font_size: 16px
+                styles:
+                  card:
+                    - background: none
+                    - box-shadow: none
+                    - border: none
+                    - padding: 0
+                    - margin: 0
+                  name:
+                    - font-size: '[[[ return variables.title_font_size; ]]]'
+                    - font-weight: 600
+                    - text-align: center
+                    - justify-self: center
+                    - width: 100%
+                    - color: var(--primary-text-color)
+              - type: custom:button-card
+                entity: switch.replace_me_01
+                triggers_update:
+                  - switch.replace_me_01
+                  - switch.replace_me_02
+                  - switch.replace_me_05
+                  - switch.replace_me_04
+                  - sensor.replace_me_01
+                show_name: false
+                show_icon: false
+                show_state: false
+                aspect_ratio: 3/2
+                tap_action:
+                  action: none
+                styles:
+                  card:
+                    - background-color: black
+                    - background-repeat: no-repeat
+                    - background-position: center
+                    - background-size: contain
+                    - border-radius: 18px
+                    - overflow: hidden
+                    - padding: 0
+                    - box-shadow: none
+                    - background-image: |
+                        [[[
+                          const strip =
+                            states['switch.replace_me_01']?.state === 'on';
+
+                          const tubes =
+                            states['switch.replace_me_02']?.state === 'on';
+
+                          if (strip && tubes) {
+                            return "url('/local/assets/Aquarium-all-on.jpeg')";
+                          }
+
+                          if (strip && !tubes) {
+                            return "url('/local/assets/Aquarium-strip-on.jpeg')";
+                          }
+
+                          if (!strip && tubes) {
+                            return "url('/local/assets/Aquarium-lights-on.jpeg')";
+                          }
+
+                          return "url('/local/assets/Aquarium-off.jpeg')";
+                        ]]]
+                  grid:
+                    - grid-template-areas: '"temperature" "strip" "tubes" "pump"'
+                    - grid-template-columns: 1fr
+                    - grid-template-rows: 1fr 1fr 1fr 1fr
+                  custom_fields:
+                    temperature:
+                      - position: absolute
+                      - top: 3%
+                      - left: 3%
+                      - z-index: 2
+                    strip:
+                      - position: absolute
+                      - top: 18%
+                      - right: 3%
+                      - width: 42px
+                      - z-index: 2
+                    tubes:
+                      - position: absolute
+                      - top: 35%
+                      - right: 3%
+                      - width: 42px
+                      - z-index: 2
+                    pump:
+                      - position: absolute
+                      - top: 52%
+                      - right: 3%
+                      - width: 42px
+                      - z-index: 2
+                custom_fields:
+                  temperature:
+                    card:
+                      type: custom:button-card
+                      entity: sensor.replace_me_01
+                      triggers_update:
+                        - sensor.replace_me_01
+                      show_icon: false
+                      show_name: false
+                      show_state: false
+                      show_label: true
+                      tap_action:
+                        action: none
+                      label: |
+                        [[[
+                          const temp = states['sensor.replace_me_01']?.state;
+
+                          if (
+                            temp === undefined ||
+                            temp === null ||
+                            temp === 'unknown' ||
+                            temp === 'unavailable'
+                          ) {
+                            return 'Water Temp --';
+                          }
+
+                          const value = Number(temp);
+
+                          if (!Number.isFinite(value)) {
+                            return 'Water Temp --';
+                          }
+
+                          return `Water Temp ${value.toFixed(1)}°C`;
+                        ]]]
+                      styles:
+                        card:
+                          - background: rgba(0,0,0,0.72)
+                          - border-radius: 12px
+                          - padding: 8px 12px
+                          - box-shadow: none
+                          - width: auto
+                        label:
+                          - color: '#ffffff'
+                          - font-size: 13px
+                          - font-weight: 600
+                          - white-space: nowrap
+                  strip:
+                    card:
+                      type: custom:button-card
+                      entity: switch.replace_me_01
+                      triggers_update:
+                        - switch.replace_me_01
+                      icon: mdi:led-strip-variant
+                      show_name: false
+                      show_state: false
+                      tap_action:
+                        action: toggle
+                      state:
+                        - value: 'on'
+                          styles:
+                            icon:
+                              - color: '#ffb74d'
+                        - value: 'off'
+                          styles:
+                            icon:
+                              - color: '#ffffff'
+                      styles:
+                        card:
+                          - background: rgba(0,0,0,0.8)
+                          - border-radius: 50%
+                          - width: 42px
+                          - height: 42px
+                          - padding: 8px
+                          - box-shadow: none
+                        icon:
+                          - width: 22px
+                  tubes:
+                    card:
+                      type: custom:button-card
+                      entity: switch.replace_me_02
+                      triggers_update:
+                        - switch.replace_me_02
+                      icon: mdi:lightbulb-group
+                      show_name: false
+                      show_state: false
+                      tap_action:
+                        action: toggle
+                      state:
+                        - value: 'on'
+                          styles:
+                            icon:
+                              - color: '#80d8ff'
+                        - value: 'off'
+                          styles:
+                            icon:
+                              - color: '#ffffff'
+                      styles:
+                        card:
+                          - background: rgba(0,0,0,0.8)
+                          - border-radius: 50%
+                          - width: 42px
+                          - height: 42px
+                          - padding: 8px
+                          - box-shadow: none
+                        icon:
+                          - width: 22px
+                  pump:
+                    card:
+                      type: custom:button-card
+                      entity: switch.replace_me_05
+                      triggers_update:
+                        - switch.replace_me_04
+                      icon: mdi:air-filter
+                      show_name: false
+                      show_state: false
+                      tap_action:
+                        action: toggle
+                      state:
+                        - value: 'on'
+                          styles:
+                            icon:
+                              - color: '#69f0ae'
+                        - value: 'off'
+                          styles:
+                            icon:
+                              - color: '#ffffff'
+                      styles:
+                        card:
+                          - background: rgba(0,0,0,0.8)
+                          - border-radius: 50%
+                          - width: 42px
+                          - height: 42px
+                          - padding: 8px
+                          - box-shadow: none
+                        icon:
+                          - width: 22px
+              - type: grid
+                columns: 4
+                square: false
+                cards:
+                  - type: custom:mushroom-light-card
+                    entity: light.replace_me_01
+                    name: Light 1
+                    use_light_color: true
+                    show_brightness_control: true
+                    show_color_control: true
+                    collapsible_controls: true
+                    tap_action:
+                      action: toggle
+                  - type: custom:mushroom-light-card
+                    entity: light.replace_me_02
+                    name: Light 2
+                    use_light_color: true
+                    show_brightness_control: true
+                    show_color_control: true
+                    collapsible_controls: true
+                    tap_action:
+                      action: toggle
+                  - type: custom:mushroom-light-card
+                    entity: light.replace_me_03
+                    name: Light 3
+                    use_light_color: true
+                    show_brightness_control: true
+                    show_color_control: true
+                    collapsible_controls: true
+                    tap_action:
+                      action: toggle
+                  - type: custom:mushroom-light-card
+                    entity: light.replace_me_04
+                    name: Light 4
+                    use_light_color: true
+                    show_brightness_control: true
+                    show_color_control: true
+                    collapsible_controls: true
+                    tap_action:
+                      action: toggle
+    badges:
+      - type: custom:button-card
+        entity: input_boolean.replace_me_03
+        name: Guest Mode
+        icon: mdi:account-group
+        show_icon: false
+        show_state: false
+        tap_action:
+          action: toggle
+        styles:
+          card:
+            - background: |
+                [[[
+                  return entity.state === 'on'
+                    ? 'rgba(103, 58, 183, 0.28)'
+                    : 'rgba(22, 25, 31, 0.72)';
+                ]]]
+            - backdrop-filter: blur(16px)
+            - -webkit-backdrop-filter: blur(16px)
+            - border: |
+                [[[
+                  return entity.state === 'on'
+                    ? '1px solid rgba(160, 120, 255, 0.65)'
+                    : '1px solid rgba(255, 255, 255, 0.16)';
+                ]]]
+            - border-radius: 16px
+            - box-shadow: |
+                [[[
+                  return entity.state === 'on'
+                    ? '0 0 12px rgba(103, 58, 183, 0.25), inset 0 1px 0 rgba(255,255,255,0.12)'
+                    : '0 6px 18px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.07)';
+                ]]]
+            - padding: 8px
+            - transition: all 0.25s ease
+          name:
+            - color: var(--primary-text-color)
+            - font-size: 14px
+            - font-weight: 600
+            - letter-spacing: 0.3px
+          icon:
+            - color: |
+                [[[
+                  return entity.state === 'on'
+                    ? '#c5a6ff'
+                    : 'var(--accent-color)';
+                ]]]
+      - type: custom:button-card
+        entity: input_boolean.replace_me_01
+        name: Away Mode
+        show_icon: false
+        show_state: false
+        tap_action:
+          action: toggle
+          confirmation:
+            text: Are you sure you want to change Away Mode?
+        styles:
+          card:
+            - background: |
+                [[[
+                  return entity.state === 'on'
+                    ? 'rgba(220, 50, 50, 0.22)'
+                    : 'rgba(22, 25, 31, 0.72)';
+                ]]]
+            - backdrop-filter: blur(16px)
+            - -webkit-backdrop-filter: blur(16px)
+            - border: |
+                [[[
+                  return entity.state === 'on'
+                    ? '1px solid rgba(255, 100, 100, 0.65)'
+                    : '1px solid rgba(255, 255, 255, 0.16)';
+                ]]]
+            - border-radius: 16px
+            - box-shadow: |
+                [[[
+                  return entity.state === 'on'
+                    ? '0 0 12px rgba(220, 50, 50, 0.25), inset 0 1px 0 rgba(255,255,255,0.12)'
+                    : '0 6px 18px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.07)';
+                ]]]
+            - padding: 8px
+            - transition: all 0.25s ease
+          name:
+            - color: var(--primary-text-color)
+            - font-size: 14px
+            - font-weight: 600
+            - letter-spacing: 0.3px
+      - type: custom:button-card
+        entity: input_boolean.replace_me_06
+        name: Speaker Control
+        show_icon: false
+        show_state: false
+        tap_action:
+          action: toggle
+        styles:
+          card:
+            - background: |
+                [[[
+                  return entity.state === 'on'
+                    ? 'rgba(0, 150, 160, 0.24)'
+                    : 'rgba(22, 25, 31, 0.72)';
+                ]]]
+            - backdrop-filter: blur(16px)
+            - -webkit-backdrop-filter: blur(16px)
+            - border: |
+                [[[
+                  return entity.state === 'on'
+                    ? '1px solid rgba(80, 220, 220, 0.6)'
+                    : '1px solid rgba(255, 255, 255, 0.16)';
+                ]]]
+            - border-radius: 16px
+            - box-shadow: |
+                [[[
+                  return entity.state === 'on'
+                    ? '0 0 12px rgba(0, 190, 200, 0.22), inset 0 1px 0 rgba(255,255,255,0.12)'
+                    : '0 6px 18px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.07)';
+                ]]]
+            - padding: 8px
+            - transition: all 0.25s ease
+          name:
+            - color: var(--primary-text-color)
+            - font-size: 14px
+            - font-weight: 600
+            - letter-spacing: 0.3px
+      - type: custom:button-card
+        entity: switch.replace_me_06
+        name: Below staircase
+        show_icon: false
+        show_state: false
+        tap_action:
+          action: toggle
+        styles:
+          card:
+            - background: |
+                [[[
+                  return entity.state === 'on'
+                    ? 'rgba(220, 50, 50, 0.22)'
+                    : 'rgba(22, 25, 31, 0.72)';
+                ]]]
+            - backdrop-filter: blur(16px)
+            - -webkit-backdrop-filter: blur(16px)
+            - border: |
+                [[[
+                  return entity.state === 'on'
+                    ? '1px solid rgba(255, 100, 100, 0.65)'
+                    : '1px solid rgba(255, 255, 255, 0.16)';
+                ]]]
+            - border-radius: 16px
+            - box-shadow: |
+                [[[
+                  return entity.state === 'on'
+                    ? '0 0 12px rgba(220, 50, 50, 0.25), inset 0 1px 0 rgba(255,255,255,0.12)'
+                    : '0 6px 18px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.07)';
+                ]]]
+            - padding: 8px
+            - transition: all 0.25s ease
+          name:
+            - color: var(--primary-text-color)
+            - font-size: 14px
+            - font-weight: 600
+            - letter-spacing: 0.3px
