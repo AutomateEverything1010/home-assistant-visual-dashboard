@@ -6,6 +6,12 @@ A visual, image-led Home Assistant dashboard template inspired by a real drawing
 
 > **Template notice:** This repository is a starting point, not a one-click install. The YAML contains neutral `replace_me_*` entity IDs and a `YOUR_HA_USERNAME` placeholder. Map them to your own Home Assistant entities before use.
 
+## Support this project
+
+If this dashboard has been useful, you can support my work here:
+
+[![Buy Me a Coffee](https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=%E2%98%95&slug=automateeverything&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff)](https://www.buymeacoffee.com/automateeverything)
+
 ## What’s included
 
 - `dashboard.yaml` — dashboard configuration with placeholder entity IDs.
